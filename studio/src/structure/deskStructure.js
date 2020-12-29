@@ -11,8 +11,7 @@ import IframePreview from '../previews/IframePreview'
 // Web preview configuration
 const remoteURL = 'https://sanity-gatsby-blog-web-w5h1atuj.netlify.app'
 const localURL = 'http://localhost:8000'
-const previewURL =
-  window.location.hostname === 'localhost' ? localURL : remoteURL
+const previewURL = 'https://preview-sanitygatsbyblogmain25238.gtsb.io'
 
 export const getDefaultDocumentNode = props => {
   /**
@@ -62,7 +61,7 @@ export default () =>
         .title('Pages')
         .icon(MdInsertDriveFile)
         .schemaType('page')
-        .child($.documentTypeList('page').title('Pages')),
+        .child(S.documentTypeList('page').title('Pages')),
       S.listItem()
         .title('Blog posts')
         .icon(MdDescription)
@@ -83,7 +82,7 @@ export default () =>
       // defined the structure above.
       ...S.documentTypeListItems().filter(
         listItem =>
-          !['category', 'author', 'post', 'siteSettings'].includes(
+          !['category', 'author', 'page', 'post', 'siteSettings'].includes(
             listItem.getId()
           )
       )
