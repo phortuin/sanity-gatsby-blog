@@ -3,7 +3,8 @@ import { MdSettings } from "react-icons/md";
 import {
   MdPerson,
   MdDescription,
-  MdLocalOffer
+  MdLocalOffer,
+  MdInsertDriveFile
 } from "react-icons/md"
 import IframePreview from '../previews/IframePreview'
 
@@ -57,6 +58,11 @@ export default () =>
             .documentId('siteSettings')
         ),
       S.divider(),
+      S.listItem()
+        .title('Pages')
+        .icon(MdInsertDriveFile)
+        .schemaType('page')
+        .child($.documentTypeList('page').title('Pages')),
       S.listItem()
         .title('Blog posts')
         .icon(MdDescription)
