@@ -35,7 +35,7 @@ export const query = graphql`
     }
   }
 
-  query IndexPageQuery {
+  query BlogOverviewTemplateQuery {
     site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
       title
       description
@@ -74,15 +74,23 @@ export const query = graphql`
             _type
             current
           }
+          slugLocale {
+            _type
+            nl {
+              current
+            }
+            en {
+              current
+            }
+          }
         }
       }
     }
   }
 `
 
-const IndexPage = (props) => {
-  // TODO: REMOVE CONSOLE LOG
-  const {data, errors, locale} = props
+const BlogOverviewTemplate = (props) => {
+  const {data, errors, pageContext} = props
 
   if (errors) {
     return (
@@ -114,7 +122,7 @@ const IndexPage = (props) => {
           <BlogPostPreviewList
             title='Latest blog posts'
             nodes={postNodes}
-            browseMoreHref={`/${locale}/archive/`}
+            browseMoreHref={`/${pageContext.locale}/archive/`}
           />
         )}
       </Container>
@@ -122,4 +130,4 @@ const IndexPage = (props) => {
   )
 }
 
-export default localize(IndexPage)
+export default localize(BlogOverviewTemplate)

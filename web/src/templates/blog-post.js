@@ -73,10 +73,9 @@ export const query = graphql`
 `
 
 const BlogPostTemplate = (props) => {
-  // TODO: REMOVE CONSOLE LOG
-  console.log(props)
   const {data, errors} = props
   const post = data && data.post
+
   return (
     <Layout>
       {errors && <SEO title='GraphQL Error' />}

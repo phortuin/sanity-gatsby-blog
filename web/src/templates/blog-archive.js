@@ -43,6 +43,15 @@ export const query = graphql`
           slug {
             current
           }
+          slugLocale {
+            _type
+            nl {
+              current
+            }
+            en {
+              current
+            }
+          }
         }
       }
     }
@@ -50,8 +59,6 @@ export const query = graphql`
 `
 
 const ArchivePage = (props) => {
-  // TODO: REMOVE CONSOLE LOG
-  console.log(props)
   const {data, errors} = props
 
   if (errors) {

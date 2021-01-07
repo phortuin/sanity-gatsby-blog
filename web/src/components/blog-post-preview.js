@@ -7,12 +7,15 @@ import PortableText from './portableText'
 
 import styles from './blog-post-preview.module.css'
 import {responsiveTitle3} from './typography.module.css'
+import {useCurrentLocale} from '../hooks/i18n'
 
 function BlogPostPreview (props) {
+  const locale = useCurrentLocale()
+
   return (
     <Link
       className={props.isInList ? styles.inList : styles.inGrid}
-      to={getBlogUrl(props.publishedAt, props.slug.current)}
+      to={getBlogUrl(props.publishedAt, props.slugLocale.current, locale)}
     >
       <div className={styles.leadMediaThumb}>
         {props.mainImage && props.mainImage.asset && (

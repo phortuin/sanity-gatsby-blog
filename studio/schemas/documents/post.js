@@ -1,7 +1,5 @@
 import {baseLanguage} from '../../config/locales'
 
-// Unknown type: localeText. Valid types are: siteSettings, page, post, category, author, mainImage, authorReference, bodyPortableText, bioPortableText, excerptPortableText, localeString, array, block, boolean, datetime, date, document, email, file, geopoint, image, number, object, reference, slug, string, telephone, text and url
-
 export default {
   name: 'post',
   type: 'document',
