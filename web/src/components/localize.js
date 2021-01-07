@@ -1,6 +1,7 @@
 import React from 'react'
 import Proptypes from 'prop-types'
 import {createLocaleTextGetter} from '../util'
+import {CurrentLocaleProvider} from '../hooks/i18n'
 
 function localize (Component) {
   return class Localize extends React.Component {
@@ -13,11 +14,12 @@ function localize (Component) {
     }
     render () {
       return (
-        <Component
-          {...this.props}
-          data={this.getLocalizedContent(this.props.data)}
-          locale={this.props.pageContext.locale}
-        />
+        <CurrentLocaleProvider value={this.props.pageContext.locale}>
+          <Component
+            {...this.props}
+            data={this.getLocalizedContent(this.props.data)}
+          />
+        </CurrentLocaleProvider>
       )
     }
   }
