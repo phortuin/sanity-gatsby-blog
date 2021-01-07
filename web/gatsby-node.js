@@ -57,7 +57,7 @@ async function createBlogOverviewPages (graphql, actions) {
 
       const page = {
         path,
-        component: require.resolve('./src/templates/blog-overview.js')
+        component: require.resolve('./src/templates/blog/blog-overview/blog-overview.js')
       }
 
       createLocalePage(page, createPage)
@@ -70,7 +70,7 @@ async function createBlogOverviewPages (graphql, actions) {
 
   const page = {
     path,
-    component: require.resolve('./src/templates/blog-overview.js')
+    component: require.resolve('./src/templates/blog/blog-overview/blog-overview.js')
   }
 
   createLocalePage(page, createPage)
@@ -90,7 +90,7 @@ async function createBlogArchivePages (graphql, actions) {
 
       const page = {
         path,
-        component: require.resolve('./src/templates/blog-archive.js')
+        component: require.resolve('./src/templates/blog/blog-archive/blog-archive.js')
       }
 
       createLocalePage(page, createPage)
@@ -103,7 +103,7 @@ async function createBlogArchivePages (graphql, actions) {
 
   const page = {
     path,
-    component: require.resolve('./src/templates/blog-archive.js')
+    component: require.resolve('./src/templates/blog/blog-archive/blog-archive.js')
   }
 
   createLocalePage(page, createPage)
@@ -165,7 +165,7 @@ async function createBlogPostPages (graphql, actions) {
 
       const page = {
         path,
-        component: require.resolve('./src/templates/blog-post.js'),
+        component: require.resolve('./src/templates/blog/blog-post/blog-post.js'),
         context: {id}
       }
 
