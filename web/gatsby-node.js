@@ -24,7 +24,7 @@ const createLocalePage = (page, createPage) => {
   })
 
   if (locales.length) {
-    locales.forEach(code => {
+    locales.forEach((code) => {
       const {path, context, ...rest} = page
 
       if (path[code]) {

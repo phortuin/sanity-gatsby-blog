@@ -15,10 +15,7 @@ function localize (Component) {
     render () {
       return (
         <CurrentLocaleProvider value={this.props.pageContext.locale}>
-          <Component
-            {...this.props}
-            data={this.getLocalizedContent(this.props.data)}
-          />
+          <Component {...this.props} data={this.getLocalizedContent(this.props.data)} />
         </CurrentLocaleProvider>
       )
     }
