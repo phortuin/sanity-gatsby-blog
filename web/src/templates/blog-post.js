@@ -6,6 +6,7 @@ import BlogPost from '../components/blog-post'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
 import {toPlainText} from '../lib/helpers'
+import localize from '../components/localize'
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {
@@ -20,7 +21,21 @@ export const query = graphql`
         ...SanityImage
         alt
       }
-      title
+      title {
+        _type
+        en
+        nl
+      }
+      koptekst {
+        _type
+        en
+        nl
+      }
+      beschrijving {
+        _type
+        en
+        nl
+      }
       slug {
         current
       }
@@ -57,13 +72,21 @@ export const query = graphql`
   }
 `
 
-const BlogPostTemplate = props => {
+const BlogPostTemplate = (props) => {
+  // TODO: REMOVE CONSOLE LOG
+  console.log(props)
   const {data, errors} = props
   const post = data && data.post
   return (
     <Layout>
       {errors && <SEO title='GraphQL Error' />}
-      {post && <SEO title={post.title || 'Untitled'} description={toPlainText(post._rawExcerpt)} image={post.mainImage} />}
+      {post && (
+        <SEO
+          title={post.title || 'Untitled'}
+          description={toPlainText(post._rawExcerpt)}
+          image={post.mainImage}
+        />
+      )}
 
       {errors && (
         <Container>
@@ -76,4 +99,4 @@ const BlogPostTemplate = props => {
   )
 }
 
-export default BlogPostTemplate
+export default localize(BlogPostTemplate)

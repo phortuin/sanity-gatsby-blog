@@ -9,11 +9,12 @@ function SEO ({description, lang, meta, keywords, title, image}) {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         const metaDescription = description || (data.site && data.site.description) || ''
         const siteTitle = (data.site && data.site.title) || ''
         const siteAuthor = (data.site && data.site.author && data.site.author.name) || ''
-        const metaImage = (image && image.asset) ? imageUrlFor(buildImageObj(image)).width(1200).url() : ''
+        const metaImage =
+          image && image.asset ? imageUrlFor(buildImageObj(image)).width(1200).url() : ''
 
         return (
           <Helmet
