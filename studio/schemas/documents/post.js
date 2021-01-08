@@ -25,11 +25,13 @@ export default {
     },
     {
       name: 'koptekst',
-      type: 'localeString'
+      type: 'localeString',
+      title: 'Koptekst'
     },
     {
       name: 'beschrijving',
-      type: 'localeString'
+      type: 'localeString',
+      title: 'Beschrijving'
     },
     {
       name: 'publishedAt',
