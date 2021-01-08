@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp, react/no-did-mount-set-state */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {format} from 'date-fns'
+import {baseLanguage} from '../../config/locales'
 import styles from './IframePreview.module.css'
 
 /**
@@ -10,15 +10,17 @@ import styles from './IframePreview.module.css'
  */
 
 const assemblePostUrl = ({displayed, options}) => {
-  const {slug} = displayed
+  const {slug, slugLocale} = displayed
   const {previewURL} = options
-  if (!slug || !previewURL) {
-    console.warn('Missing slug or previewURL', {slug, previewURL})
+  if (!slug || !slugLocale || !previewURL) {
+    console.warn('Missing slug or previewURL', {slug, slugLocale, previewURL})
     return ''
   }
 
-  const path = `/${slug.current}/`
-  return `${previewURL}/blog${path}`
+  const locale = baseLanguage.id
+  const localizedSlug = slugLocale[locale].current
+
+  return `${previewURL}/${locale}/blog/${localizedSlug}/`
 }
 
 const IframePreview = props => {
