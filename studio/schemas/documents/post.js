@@ -1,4 +1,4 @@
-import {format} from 'date-fns'
+import {baseLanguage} from '../../config/locales'
 
 export default {
   name: 'post',
@@ -7,7 +7,7 @@ export default {
   fields: [
     {
       name: 'title',
-      type: 'string',
+      type: 'localeString',
       title: 'Title',
       description: 'Titles should be catchy, descriptive, and not too long'
     },
@@ -15,11 +15,23 @@ export default {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
-      description: 'Some frontends will require a slug to be set to be able to show the post',
-      options: {
-        source: 'title',
-        maxLength: 96
-      }
+      description: 'Some frontends will require a slug to be set to be able to show the post'
+    },
+    {
+      name: 'slugLocale',
+      type: 'localeSlug',
+      title: 'Slug Locale',
+      description: 'Some frontends will require a slug to be set to be able to show the post'
+    },
+    {
+      name: 'koptekst',
+      type: 'localeString',
+      title: 'Koptekst'
+    },
+    {
+      name: 'beschrijving',
+      type: 'localeString',
+      title: 'Beschrijving'
     },
     {
       name: 'publishedAt',
@@ -100,14 +112,13 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title',
+      title: `title.${baseLanguage.id}`,
       publishedAt: 'publishedAt',
       slug: 'slug',
       media: 'mainImage'
     },
     prepare ({title = 'No title', publishedAt, slug = {}, media}) {
-      const dateSegment = format(publishedAt, 'YYYY/MM')
-      const path = `/${dateSegment}/${slug.current}/`
+      const path = `/${slug.current}/`
       return {
         title,
         media,

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp, react/no-did-mount-set-state */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { format } from 'date-fns'
+import {baseLanguage} from '../../config/locales'
 import styles from './IframePreview.module.css'
 
 /**
@@ -9,21 +9,23 @@ import styles from './IframePreview.module.css'
  * https://www.sanity.io/blog/evolve-authoring-experiences-with-views-and-split-panes
  */
 
-const assemblePostUrl = ({ displayed, options }) => {
-  const { slug, publishedAt } = displayed
-  const { previewURL } = options
-  if (!slug || !previewURL) {
-    console.warn('Missing slug or previewURL', { slug, previewURL })
+const assemblePostUrl = ({displayed, options}) => {
+  const {slug, slugLocale} = displayed
+  const {previewURL} = options
+  if (!slug || !slugLocale || !previewURL) {
+    console.warn('Missing slug or previewURL', {slug, slugLocale, previewURL})
     return ''
   }
-  const dateSegment = format(publishedAt, 'YYYY/MM')
-  const path = `/${dateSegment}/${slug.current}/`
-  return `${previewURL}/blog${path}`
+
+  const locale = baseLanguage.id
+  const localizedSlug = slugLocale[locale].current
+
+  return `${previewURL}/${locale}/blog/${localizedSlug}/`
 }
 
 const IframePreview = props => {
-  const { options } = props
-  const { displayed } = props.document
+  const {options} = props
+  const {displayed} = props.document
 
   if (!displayed) {
     return (
@@ -33,7 +35,7 @@ const IframePreview = props => {
     )
   }
 
-  const url = assemblePostUrl({ displayed, options })
+  const url = assemblePostUrl({displayed, options})
 
   if (!url) {
     return (
